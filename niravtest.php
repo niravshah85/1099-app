@@ -40,9 +40,19 @@ class NiravTest{
 		
 		$sql = "CREATE TABLE " . $tableName.  
 		" (
-		FirstName varchar(150),
-		LastName varchar(150),
-		Age int
+		session_id varchar(1000),
+		email varchar(150),
+		filing_status int,
+		tax_bracket int,
+		state varchar(10),
+		annual_income int,
+		prob_get_all_info int,
+		prob_know_tax_to_put_aside int,
+		prob_track_expenses int,
+		prob_paying_tax_on_time int,
+		net_promoter_yes_5_dollars int,
+		net_promoter_yes_3_dollars int,
+		net_promoter_no int
 		)";
 		
 		echo 'dbName: ' . $dbName . "<br />";
