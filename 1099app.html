@@ -12,13 +12,54 @@
 	$(document).ready(function() {
 		var $page = $("#profile");
 		var $stateItem = $page.find("#statechoice");
+		localStorage.removeItem('income');
+		localStorage.income = 0;
+		localStorage.removeItem('expense');
+		localStorage.expense = 0;
+		localStorage.removeItem('tax');
+		localStorage.tax = 0;
+		localStorage.removeItem('net');
+		localStorage.net = 0;
+		localStorage.removeItem('taxableincome');
+		localStorage.taxableincome = 0;	
+
+		
 		
 		$("#savemoney").click(function() {
-			//alert ("Income is " + $("#income").val());
+			console.log("Income is " + $("#income").val());
 			localStorage.income = $("#income").val();
-			//alert("Income saved: "+ localStorage.income);
+			//alert("value of income is "+ localStorage.income);
+			
+			localStorage.taxableincome = localStorage.income - localStorage.expense;
+			localStorage.tax = localStorage.taxableincome * localStorage.taxbracket;
+			localStorage.net = localStorage.income - localStorage.tax;
+			console.log('localStorage.taxableincome' + localStorage.taxableincome);
+			console.log('localStorage.tax' + localStorage.tax);
+			console.log('localStorage.net' + localStorage.net);
+			
+			$("#totalincome").text(localStorage.income);
+			$("#totalexpense").text(localStorage.expense);
+			$("#totaltax").text(localStorage.tax);
+			$("#netincome").text(localStorage.net);
+			
 			
 		});	
+		
+		$("#saveexpense").click(function() {
+			//alert ("expense is " + $("#expense").val());
+			localStorage.expense = $("#expense").val();
+			//alert("expense saved: "+ localStorage.expense);
+			
+			localStorage.taxableincome = localStorage.income - localStorage.expense;
+			localStorage.tax = localStorage.taxableincome * localStorage.taxbracket;
+			localStorage.net = localStorage.income - localStorage.tax;
+			
+			$("#totalincome").text(localStorage.income);
+			$("#totalexpense").text(localStorage.expense);
+			$("#totaltax").text(localStorage.tax);
+			$("#netincome").text(localStorage.net);
+			
+		});
 		
 		$("#filingstatus").bind( "change", function(event, ui) {
 		  	//alert ("Filing status is " + $("#filingstatus").val());
@@ -40,7 +81,6 @@
 		
 	
 	  	$.getJSON('state.json',function(stateData){
-			alert("getJSON called");
 			$.each(stateData, function(key, val) {
 				$stateItem.append('<option value="' + val.abbr + '">' + val.state + '</option>');
 				//console.log('<option value="' + val.abbr + '">' + val.state + '</option>');
@@ -54,14 +94,14 @@
 	<!-- Mustache :-{)~ Template for detail views -->
     <script type="text/x-mustache-tmpl" id="detailtemplate">
 		{{#categories}}
-		<li>{{name}}
+		<li>{{income}}
 			<ul>
 			    {{#items}}
-				<li data-icon="plus">
+				<li>
 					<a href="#dialog" data-rel="dialog">
 						<img src="{{image}}" alt="{{title}}">
-						<h2>{{title}}</h2>
-						<p>{{description}}</p>
+						<h2>{{date}}</h2>
+						<p>{{amount}}</p>
 					</a>
 				</li>
                 {{/items}}
@@ -99,12 +139,12 @@
 				<div class="ui-block-b">	
 					<select name="taxbracket" id="taxbracket">
 						<option value="choose bracket">choose</option>
-						<option value="10">10%</option>
-						<option value="15">15%</option>
-						<option value="25">25%</option>
-						<option value="28">28%</option>
-						<option value="33">33%</option>
-						<option value="35">35%</option>
+						<option value=".10">10%</option>
+						<option value=".15">15%</option>
+						<option value=".25">25%</option>
+						<option value=".28">28%</option>
+						<option value=".33">33%</option>
+						<option value=".35">35%</option>
 					</select>
 				</div>
 			</li>
@@ -135,8 +175,8 @@
     <div data-role="content">
 		<div style="text-align: center;">
 			<!-- image will be rendered here-->
-			<p><a href="#money" data-role="button" id="incone">I got paid.</a></p>
-			<p><a href="#money" data-role="button" id="expense">I paid expenses.</a></p>
+			<p><a href="#money" data-role="button" id="incomeearned">I got paid.</a></p>
+			<p><a href="#moneyout" data-role="button" id="expensepaid">I paid expenses.</a></p>
 		</div>
 	</div>
 
@@ -152,7 +192,7 @@
 		<form id="form" action="#" method="post">
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup">
-					<label for="howmuch">How much?</label>
+					<label for="howmuch">How much income?</label>
 					<input type="text" name="check" id="income" placeholder="1000.00"/>	
 					<a href="#notyet" data-role="button">Upload photo</a>
 				</fieldset>
@@ -165,6 +205,28 @@
 	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
 </section><!-- /page -->
 
+<section data-role="page" data-theme="a" id="moneyout" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+	<header data-role="header">
+		<h1>Enter expense amount.</h1>
+	</header>
+
+	<div data-role="content">	
+		<form id="formexpense" action="#" method="post">
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<label for="howmuch">How much expense?</label>
+					<input type="text" name="bill" id="expense" placeholder="100.00"/>	
+					<a href="#notyet" data-role="button">Upload photo</a>
+				</fieldset>
+			</div>
+		</form>
+	</div>
+	<a href="#home" data-role="button" data-inline="true">Cancel</a>
+	<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>
+
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+</section><!-- /page -->
+
 <section data-role="page" data-theme="a" id="summary" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
 	<header data-role="header">
 		<h1>Tax Summary</h1>
@@ -172,11 +234,23 @@
 
 	<div data-role="content">
 		<ul data-role="listview">
-			<li><a href="index.html">Income <span class="ui-li-count">1000.00</span></a></li>
-			<li><a href="index.html">Expense <span class="ui-li-count">200.00</span></a></li>
-			<li><a href="index.html">Tax <span class="ui-li-count">300.00</span></a></li>
+			<li><a href="index.html" >Income <span id="totalincome" class="ui-li-count">0.00</span></a></li>
+			<li><a href="index.html" >Expense <span id="totalexpense" class="ui-li-count">0.00</span></a></li>
+			<li><a href="index.html" >Tax <span id="totaltax" class="ui-li-count">0.00</span></a></li>
 		</ul>
-	</div><!--/content-primary -->
+	</div>
+	<div data-role="content" style="text-align: center;">
+		<h5><strong><label>Your net is: </label><label id="netincome"></label></strong></h5>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<p><a href="#money" data-inline="true" data-role="button" id="incomeearnedsummary">Enter income.</a></p>
+			</div>
+			<div class="ui-block-b">
+				<p><a href="#moneyout" data-inline= "true" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>
+			</div>
+		</div>
+	</div>
+	
 
 	<footer data-role="footer" data-position="fixed"><h4><a href="#home">Home</a></h4></footer>
 </section><!-- /page -->
@@ -189,6 +263,18 @@
 
 	<div data-role="content">	
 		<p>Coming Soon!</p>
+	</div>
+
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+</section><!-- /page -->
+
+<section data-role="page" data-theme="a" id="details" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+	<header data-role="header">
+	    <!-- variable <h1>Details</h1> -->	
+	</header>
+
+	<div data-role="detailcontent">	
+		<!--details rendered here -->
 	</div>
 
 	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
