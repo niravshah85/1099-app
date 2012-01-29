@@ -6,7 +6,7 @@ class NiravTest{
 	private $password='intuit01';
 	private $databaseName='db1099';
 	
-	public function createDB($dbName){
+	public function createDB(){
 		//Create DB
 		$dbName = $this->databaseName;
 		$con = mysql_connect($this->host, $this->user, $this->password);
@@ -26,11 +26,11 @@ class NiravTest{
 	}
 	
 	
-	public function createSurveyTable($dbName){
+	public function createSurveyTable(){
 		// Create table
 		$dbName = $this->databaseName;
 		
-		$tableName = "niravtest";
+		$tableName = "survey";
 		
 		$con = mysql_connect($this->host, $this->user, $this->password);
 		
