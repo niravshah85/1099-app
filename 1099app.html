@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-	<title>1099 Contractor App</title> 
+	<title>1099 Contractor Tax Helper</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1;"/> 
 	<link rel="stylesheet" href="themes/1099app.min.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile.structure-1.0.1.min.css" />
@@ -164,7 +164,7 @@
 		<p><a href="#home" data-role="button" id="Skip">Save</a></p>
 		<p><a href="#home" id="saveprofile" data-role="button" id="Save">Skip</a></p>
 	</div>
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="home" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -177,10 +177,11 @@
 			<!-- image will be rendered here-->
 			<p><a href="#money" data-role="button" id="incomeearned">I got paid.</a></p>
 			<p><a href="#moneyout" data-role="button" id="expensepaid">I paid expenses.</a></p>
+			<p><a href="#summary" data-role="button" id="expensepaid">Tax and Net Summary</a></p>
 		</div>
 	</div>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="money" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -194,7 +195,7 @@
 				<fieldset data-role="controlgroup">
 					<label for="howmuch">How much income?</label>
 					<input type="text" name="check" id="income" placeholder="1000.00"/>	
-					<a href="#notyet" data-role="button">Upload photo</a>
+					<a href="#notyet" data-role="button">Take photo</a>
 				</fieldset>
 			</div>
 		</form>
@@ -202,12 +203,12 @@
 	<a href="#home" data-role="button" data-inline="true">Cancel</a>
 	<a href="#summary" id="savemoney" data-role="button" data-inline="true">Save</a>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="moneyout" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
 	<header data-role="header">
-		<h1>Enter expense amount.</h1>
+		<h1>Enter expense.</h1>
 	</header>
 
 	<div data-role="content">	
@@ -216,7 +217,7 @@
 				<fieldset data-role="controlgroup">
 					<label for="howmuch">How much expense?</label>
 					<input type="text" name="bill" id="expense" placeholder="100.00"/>	
-					<a href="#notyet" data-role="button">Upload photo</a>
+					<a href="#notyet" data-role="button">Take photo</a>
 				</fieldset>
 			</div>
 		</form>
@@ -224,7 +225,7 @@
 	<a href="#home" data-role="button" data-inline="true">Cancel</a>
 	<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="summary" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -249,7 +250,7 @@
 	</div>
 	
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">Home</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 
@@ -310,7 +311,7 @@
 	</div>
 		
 
-	<footer data-role="footer" data-position="fixed"><h><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="survey2" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -339,7 +340,7 @@
 	</div>
 		
 
-	<footer data-role="footer" data-position="fixed"><h><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 
@@ -352,7 +353,7 @@
 		<p>Coming Soon!</p>
 	</div>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="details" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -364,7 +365,7 @@
 		<!--details rendered here -->
 	</div>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor App</a></h4></footer>
+	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
 </section><!-- /page -->
 </body>
 
