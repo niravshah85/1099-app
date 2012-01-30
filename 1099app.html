@@ -240,19 +240,106 @@
 		</ul>
 	</div>
 	<div data-role="content" style="text-align: center;">
-		<h5><strong><label>Your net is: </label><label id="netincome"></label></strong></h5>
-		<div class="ui-grid-a">
-			<div class="ui-block-a">
-				<p><a href="#money" data-inline="true" data-role="button" id="incomeearnedsummary">Enter income.</a></p>
-			</div>
-			<div class="ui-block-b">
-				<p><a href="#moneyout" data-inline= "true" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>
-			</div>
+		<h4><strong><label>Your net is: </label><label id="netincome"></label></strong></h4>
+		<p><a href="#money" data-role="button" id="incomeearnedsummary">Enter income.</a></p>
+		<p><a href="#moneyout" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>
+
+		<p><h2><a href="#survey1" data-role="button" id="surveystartbutton">NEXT</a></h2></p>
 		</div>
 	</div>
 	
 
 	<footer data-role="footer" data-position="fixed"><h4><a href="#home">Home</a></h4></footer>
+</section><!-- /page -->
+
+
+<section data-role="page" data-theme="a" id="survey1" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+	<header data-role="header">
+		<h1>Thank you!</h1>
+	</header>
+	
+	<div data-role="content" class="ui-grid-a" style="text-align: center;">
+		<li data-role="fieldcontain">
+			<div class="ui-block-a">
+				<label for="question1" class="select">Will this help you to gather daily info for tax time?</label>
+			</div>
+			<div class="ui-block-b">
+				<select name="question1" id="question1">
+					<option value="choose">choose</option>
+					<option value="yes">yes</option>
+					<option value="no">no</option>
+				</select>
+			</div>
+		</li>
+	</div>
+	
+	<div data-role="content" class="ui-grid-a" style="text-align: center;">
+		<li data-role="fieldcontain">
+			<div class="ui-block-a">
+				<label for="question2" class="select">Will this help you to know how much tax to put aside?</label>
+			</div>
+			<div class="ui-block-b">
+				<select name="question2" id="question2">
+					<option value="choose">choose</option>
+					<option value="yes">yes</option>
+					<option value="no">no</option>
+				</select>
+			</div>
+		</li>
+	</div>
+	
+	<div data-role="content" class="ui-grid-a" style="text-align: center;">
+		<li data-role="fieldcontain">
+			<div class="ui-block-a">
+				<label for="question3" class="select">Will this help you track reimbursable expenses?</label>
+			</div>
+			<div class="ui-block-b">
+				<select name="question3" id="question3">
+					<option value="choose">choose</option>
+					<option value="yes">yes</option>
+					<option value="no">no</option>
+				</select>
+			</div>
+		</li>
+	</div>
+
+
+	
+	<div data-role="content">
+		<p><h2><a href="#survey2" data-role="button" id="surveybutton2">NEXT</a></h2></p>
+	</div>
+		
+
+	<footer data-role="footer" data-position="fixed"><h><a href="#home">1099 Contractor App</a></h4></footer>
+</section><!-- /page -->
+
+<section data-role="page" data-theme="a" id="survey2" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+	<header data-role="header">
+		<h1>Thank you!</h1>
+	</header>
+	
+	<div data-role="content" class="ui-grid-a" style="text-align: center;">
+		<li data-role="fieldcontain">
+			<div class="ui-block-a">
+				<label for="question3" class="select">Would you buy this application?</label>
+			</div>
+			<div class="ui-block-b">
+				<select name="moneyquestion" id="moneyquestion">
+					<option value="choose">choose</option>
+					<option value="3">Yes, for less than 3 dollars.</option>
+					<option value="5">Yes, for less than 5 dollars.</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+		</li>
+	</div>
+	
+	<div>
+		<p><h2><a href="#survey3" data-role="button" id="surveybutton3">Click to buy the real app</a></h2></p>
+	</div>
+		
+
+	<footer data-role="footer" data-position="fixed"><h><a href="#home">1099 Contractor App</a></h4></footer>
 </section><!-- /page -->
 
 
