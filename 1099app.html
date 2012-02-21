@@ -22,6 +22,7 @@
 		localStorage.net = 0;
 		localStorage.removeItem('taxableincome');
 		localStorage.taxableincome = 0;	
+		$("#netincome").text("Click income or expense below to start.");
 
 		
 		
@@ -41,7 +42,7 @@
 			$("#totalincome").text(Math.floor(localStorage.income));
 			$("#totalexpense").text(Math.floor(localStorage.expense));
 			$("#totaltax").text(Math.floor(localStorage.tax));
-			$("#netincome").text(Math.floor(localStorage.net));
+			$("#netincome").text("Your net is: " + Math.floor(localStorage.net));
 			
 			
 		});	
@@ -59,7 +60,7 @@
 			$("#totalincome").text(Math.floor(localStorage.income));
 			$("#totalexpense").text(Math.floor(localStorage.expense));
 			$("#totaltax").text(Math.floor(localStorage.tax));
-			$("#netincome").text(Math.floor(localStorage.net));
+			$("#netincome").text("Your net is: " + Math.floor(localStorage.net));
 			
 		});
 		
@@ -115,22 +116,21 @@
 </head> 
 <body> 
 <section data-role="page" id="welcome" data-theme="a">
-	<header data-role="header"><h1>1099 Contractor Tax Helper</h1></header>
+	<header data-role="header"><h1>Welcome</h1></header>
 	<div style="text-align: center;">
-		<h2>Welcome!</h2>
-			<ul data-role="listview">
-				<li>
-					<h3>Now, you can... </h3>
-					<p>know your net on projects at any time,</p>
-					<p>automatically calculate tax from photos of checks and bills,</p>
-					<p>and be ready for tax-time, anytime.</p>
-				</li>
-				<li>
-					<h3>Getting started is easy.</h3>
-					<p>We'll ask a few questions about your tax situation</p>
-					<p>and then you can start taking photos of checks and receipts!</p>
-				</li>
-			</ul>
+		<ul data-role="listview">
+			<li>
+				<h3>Be ready for tax-time, anytime!</h3>
+				<p>With this app, you can automatically calculate your net </p>
+				<p>and tax from photos of checks and bills.</p>
+
+			</li>
+			<li>
+				<h3>Getting started is easy.</h3>
+				<p>We'll ask a few questions about your tax situation</p>
+				<p>and then you can start taking photos.</p>
+			</li>
+		</ul>
 		<p><a href="#profile" data-role="button" id="getstarted" style="font-size:2.5em;">Get Started</a></p>
 	</div>
 </section><!-- /page -->
@@ -187,13 +187,13 @@
 		</div>
 		<p><a href="#summary" data-role="button" id="save">Save</a></p>
 	</div>
-	<div data-role="footer">
+	<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#profile" data-icon="gear" class="ui-btn-active">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
@@ -218,20 +218,20 @@
 	<!--<a href="#home" data-role="button" data-inline="true">Cancel</a>-->
 	<!--<a href="#summary" id="savemoney" data-role="button" data-inline="true">Save</a>-->
 
-	<div data-role="footer">
+	<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus" class="ui-btn-active">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
 </section><!-- /page -->
 <section data-role="page" data-theme="a" id="moneysave" data-transition="flip">
 	<header data-role="header">
-		<h1>Unable to load camera.</h1>
+		<h1>Camera error.</h1>
 	</header>
 
 	<div data-role="content">	
@@ -239,21 +239,22 @@
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup">
 					<label for="howmuch">Enter income manually.</label>
-					<input type="text" name="check" id="income" placeholder="1000.00"/>
+					<input type="number" name="check" id="income" placeholder="1000.00"/>
 				</fieldset>
 			</div>
 		</form>
 	</div>
-	<a href="#summary" data-role="button" data-inline="true">Cancel</a>
-	<a href="#summary" id="savemoney" data-role="button" data-inline="true">Save</a>
-
-	<div data-role="footer">
+	<div data-role="content" style="text-align: center;">
+		<a href="#summary" data-role="button" data-inline="true">Cancel</a>
+		<a href="#summary" id="savemoney" data-role="button" data-inline="true">Save</a>
+	</div>
+	<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus" class="ui-btn-active">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -278,20 +279,20 @@
 	<!--<a href="#home" data-role="button" data-inline="true">Cancel</a>
 	<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>-->
 
-	<div data-role="footer">
+	<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus" class="ui-btn-active">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
 </section><!-- /page -->
 <section data-role="page" data-theme="a" id="moneyoutsave" data-transition="flip">
 	<header data-role="header">
-		<h1>Unable to load camera.</h1>
+		<h1>Camera error.</h1>
 	</header>
 
 	<div data-role="content">	
@@ -299,21 +300,22 @@
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup">
 					<label for="howmuch">Please enter expense manually.</label>
-					<input type="text" name="bill" id="expense" placeholder="100.00"/>
+					<input type="number" name="bill" id="expense" placeholder="100.00"/>
 				</fieldset>
 			</div>
 		</form>
 	</div>
-	<a href="#home" data-role="button" data-inline="true">Cancel</a>
-	<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>
-
-	<div data-role="footer">
+	<div data-role="content" style="text-align: center;">
+		<a href="#home" data-role="button" data-inline="true">Cancel</a>
+		<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>
+	</div>
+	<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus" class="ui-btn-active">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -322,7 +324,7 @@
 
 <section data-role="page" data-theme="a" id="summary" data-transition="flip">
 	<header data-role="header">
-		<h1>Tax Summary</h1>
+		<h1>Net & Tax</h1>
 	</header>
 
 	<div data-role="content">
@@ -333,7 +335,7 @@
 		</ul>
 	</div>
 	<div data-role="content" style="text-align: center;">
-		<h4><strong><label>Your net is: </label><label  style="font-size:1.5em;" id="netincome"></label></strong></h4>
+		<h4><strong><label  style="font-size:1.5em;" id="netincome"></label></strong></h4>
 		<!--<p><a href="#money" data-role="button" id="incomeearnedsummary">Enter income.</a></p>
 		<p><a href="#moneyout" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>-->
 
@@ -342,13 +344,13 @@
 	</div>
 	
 
-	<div data-role="footer">
+	<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net & Tax</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -418,7 +420,7 @@
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -456,7 +458,7 @@
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -478,7 +480,7 @@
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -499,7 +501,7 @@
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
