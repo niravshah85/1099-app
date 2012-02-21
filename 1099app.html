@@ -28,6 +28,7 @@
 		$("#savemoney").click(function() {
 			console.log("Income is " + $("#income").val());
 			localStorage.income = $("#income").val();
+			$("#income").val("");
 			//alert("value of income is "+ localStorage.income);
 			
 			localStorage.taxableincome = localStorage.income - localStorage.expense;
@@ -48,6 +49,7 @@
 		$("#saveexpense").click(function() {
 			//alert ("expense is " + $("#expense").val());
 			localStorage.expense = $("#expense").val();
+			$("#expense").val("");
 			//alert("expense saved: "+ localStorage.expense);
 			
 			localStorage.taxableincome = localStorage.income - localStorage.expense;
