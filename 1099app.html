@@ -3,7 +3,7 @@
 <head> 
 	<title>1099 Contractor Tax Helper</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1;"/> 
-	<link rel="stylesheet" href="themes/1099app.min.css" />
+	<link rel="stylesheet" href="themes/1099_2.min.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile.structure-1.0.1.min.css" />
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
@@ -37,10 +37,10 @@
 			console.log('localStorage.tax' + localStorage.tax);
 			console.log('localStorage.net' + localStorage.net);
 			
-			$("#totalincome").text(localStorage.income);
-			$("#totalexpense").text(localStorage.expense);
-			$("#totaltax").text(localStorage.tax);
-			$("#netincome").text(localStorage.net);
+			$("#totalincome").text(Math.floor(localStorage.income));
+			$("#totalexpense").text(Math.floor(localStorage.expense));
+			$("#totaltax").text(Math.floor(localStorage.tax));
+			$("#netincome").text(Math.floor(localStorage.net));
 			
 			
 		});	
@@ -54,10 +54,10 @@
 			localStorage.tax = localStorage.taxableincome * localStorage.taxbracket;
 			localStorage.net = localStorage.income - localStorage.tax;
 			
-			$("#totalincome").text(localStorage.income);
-			$("#totalexpense").text(localStorage.expense);
-			$("#totaltax").text(localStorage.tax);
-			$("#netincome").text(localStorage.net);
+			$("#totalincome").text(Math.floor(localStorage.income));
+			$("#totalexpense").text(Math.floor(localStorage.expense));
+			$("#totaltax").text(Math.floor(localStorage.tax));
+			$("#netincome").text(Math.floor(localStorage.net));
 			
 		});
 		
@@ -112,6 +112,28 @@
 
 </head> 
 <body> 
+<section data-role="page" id="welcome" data-theme="a">
+	<header data-role="header"><h1>1099 Contractor Tax Helper</h1></header>
+	<div style="text-align: center;">
+		<h2>Welcome!</h2>
+			<ul data-role="listview">
+				<li>
+					<h3>Now, you can... </h3>
+					<p>know your net on projects at any time,</p>
+					<p>automatically calculate tax from photos of checks and bills,</p>
+					<p>and be ready for tax-time, anytime.</p>
+				</li>
+				<li>
+					<h3>Getting started is easy.</h3>
+					<p>We'll ask a few questions about your tax situation</p>
+					<p>and then you can start taking photos of checks and receipts!</p>
+				</li>
+			</ul>
+		<p><a href="#profile" data-role="button" id="getstarted" style="font-size:2.5em;">Get Started</a></p>
+	</div>
+</section><!-- /page -->
+
+
 
 <section data-role="page" id="profile" data-theme="a">
 	<header data-role="header"><h1>Tax Profile</h1></header>
@@ -161,52 +183,81 @@
 				</div>
 			</li>
 		</div>
-		<p><a href="#home" data-role="button" id="Skip">Save</a></p>
-		<p><a href="#home" id="saveprofile" data-role="button" id="Save">Skip</a></p>
+		<p><a href="#summary" data-role="button" id="save">Save</a></p>
 	</div>
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear" class="ui-btn-active">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
 </section><!-- /page -->
 
-<section data-role="page" data-theme="a" id="home" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+<section data-role="page" data-theme="a" id="money" data-transition="flip">
 	<header data-role="header">
-		<h1>Home</h1>
-	</header>
-
-    <div data-role="content">
-		<div style="text-align: center;">
-			<!-- image will be rendered here-->
-			<p><a href="#money" data-role="button" id="incomeearned">I got paid.</a></p>
-			<p><a href="#moneyout" data-role="button" id="expensepaid">I paid expenses.</a></p>
-			<p><a href="#summary" data-role="button" id="expensepaid">Tax and Net Summary</a></p>
-		</div>
-	</div>
-
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
-</section><!-- /page -->
-
-<section data-role="page" data-theme="a" id="money" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
-	<header data-role="header">
-		<h1>Enter amounts.</h1>
+		<h1>Enter income.</h1>
 	</header>
 
 	<div data-role="content">	
 		<form id="form" action="#" method="post">
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup">
-					<label for="howmuch">How much income?</label>
-					<input type="text" name="check" id="income" placeholder="1000.00"/>	
-					<a href="#notyet" data-role="button">Take photo</a>
+					<!--<label for="howmuch">How much income?</label>
+					<input type="text" name="check" id="income" placeholder="1000.00"/>-->
+					<a href="#moneysave" data-role="button" style="font-size:2.5em;">Take photo</a> 
 				</fieldset>
 			</div>
 		</form>
 	</div>
-	<a href="#home" data-role="button" data-inline="true">Cancel</a>
+	<!--<a href="#home" data-role="button" data-inline="true">Cancel</a>-->
+	<!--<a href="#summary" id="savemoney" data-role="button" data-inline="true">Save</a>-->
+
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus" class="ui-btn-active">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
+</section><!-- /page -->
+<section data-role="page" data-theme="a" id="moneysave" data-transition="flip">
+	<header data-role="header">
+		<h1>Unable to load camera.</h1>
+	</header>
+
+	<div data-role="content">	
+		<form id="form" action="#" method="post">
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<label for="howmuch">Enter income manually.</label>
+					<input type="text" name="check" id="income" placeholder="1000.00"/>
+				</fieldset>
+			</div>
+		</form>
+	</div>
+	<a href="#summary" data-role="button" data-inline="true">Cancel</a>
 	<a href="#summary" id="savemoney" data-role="button" data-inline="true">Save</a>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus" class="ui-btn-active">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 
-<section data-role="page" data-theme="a" id="moneyout" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+<section data-role="page" data-theme="a" id="moneyout" data-transition="flip">
 	<header data-role="header">
 		<h1>Enter expense.</h1>
 	</header>
@@ -215,9 +266,38 @@
 		<form id="formexpense" action="#" method="post">
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup">
-					<label for="howmuch">How much expense?</label>
-					<input type="text" name="bill" id="expense" placeholder="100.00"/>	
-					<a href="#notyet" data-role="button">Take photo</a>
+					<!--<label for="howmuch">How much expense?</label>
+					<input type="text" name="bill" id="expense" placeholder="100.00"/>-->
+					<a href="#moneyoutsave" data-role="button" style="font-size:2.5em;">Take photo</a>
+				</fieldset>
+			</div>
+		</form>
+	</div>
+	<!--<a href="#home" data-role="button" data-inline="true">Cancel</a>
+	<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>-->
+
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus" class="ui-btn-active">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
+</section><!-- /page -->
+<section data-role="page" data-theme="a" id="moneyoutsave" data-transition="flip">
+	<header data-role="header">
+		<h1>Unable to load camera.</h1>
+	</header>
+
+	<div data-role="content">	
+		<form id="formexpense" action="#" method="post">
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<label for="howmuch">Please enter expense manually.</label>
+					<input type="text" name="bill" id="expense" placeholder="100.00"/>
 				</fieldset>
 			</div>
 		</form>
@@ -225,32 +305,51 @@
 	<a href="#home" data-role="button" data-inline="true">Cancel</a>
 	<a href="#summary" id="saveexpense" data-role="button" data-inline="true">Save</a>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus" class="ui-btn-active">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 
-<section data-role="page" data-theme="a" id="summary" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
+
+<section data-role="page" data-theme="a" id="summary" data-transition="flip">
 	<header data-role="header">
 		<h1>Tax Summary</h1>
 	</header>
 
 	<div data-role="content">
 		<ul data-role="listview">
-			<li><a href="index.html" >Income <span id="totalincome" class="ui-li-count">0.00</span></a></li>
-			<li><a href="index.html" >Expense <span id="totalexpense" class="ui-li-count">0.00</span></a></li>
-			<li><a href="index.html" >Tax <span id="totaltax" class="ui-li-count">0.00</span></a></li>
+			<li><a href="index.html" >Income <span id="totalincome" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
+			<li><a href="index.html" >Expense <span id="totalexpense" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
+			<li><a href="index.html" >Tax <span id="totaltax" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
 		</ul>
 	</div>
 	<div data-role="content" style="text-align: center;">
-		<h4><strong><label>Your net is: </label><label id="netincome"></label></strong></h4>
-		<p><a href="#money" data-role="button" id="incomeearnedsummary">Enter income.</a></p>
-		<p><a href="#moneyout" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>
+		<h4><strong><label>Your net is: </label><label  style="font-size:1.5em;" id="netincome"></label></strong></h4>
+		<!--<p><a href="#money" data-role="button" id="incomeearnedsummary">Enter income.</a></p>
+		<p><a href="#moneyout" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>-->
 
-		<p><h2><a href="#survey1" data-role="button" id="surveystartbutton">NEXT</a></h2></p>
+		<!--<p><h2><a href="#survey2" data-role="button" id="surveystartbutton">NEXT</a></h2></p> -->
 		</div>
 	</div>
 	
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 
 
@@ -311,7 +410,16 @@
 	</div>
 		
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="survey2" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -336,11 +444,20 @@
 	</div>
 	
 	<div>
-		<p><h2><a href="http://unbouncepages.com/1099-contractor-tax-helper/" data-role="button" id="surveybutton3">Click to buy the real app</a></h2></p>
+		<p><h2><a href="http://unbouncepages.com/1099-contractor-tax-helper/" data-role="button" id="surveybutton3">Buy the real app</a></h2></p>
 	</div>
 		
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 
 
@@ -353,7 +470,16 @@
 		<p>Coming Soon!</p>
 	</div>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="details" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
@@ -365,7 +491,16 @@
 		<!--details rendered here -->
 	</div>
 
-	<footer data-role="footer" data-position="fixed"><h4><a href="#home">1099 Contractor Tax Helper</a></h4></footer>
+	<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net/Tax Summary	</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
 </section><!-- /page -->
 </body>
 
