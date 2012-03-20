@@ -72,6 +72,10 @@
 		
 		$("#taxbracket").bind( "change", function(event, ui) {
 		  	//alert ("taxbracket is " + $("#taxbracket").val());
+			if ($("#taxbracket").val() === "notsure") {
+				//alert ("notsure");
+				$.mobile.changePage( "#helpchoose", { transition: "pop"} );
+			}
 			localStorage.taxbracket = $("#taxbracket").val();
 			//alert("taxbracket saved: "+ localStorage.taxbracket);
 		});
@@ -135,6 +139,94 @@
 	</div>
 </section><!-- /page -->
 
+<section data-role="page" id="fun" data-theme="a">
+	<header data-role="header"><h1>FUN!</h1></header>
+	<div style="text-align: center;">
+		<ul data-role="listview">
+			<li>
+				<h3>Are you appy or sad with our app?</h3>
+			</li>
+		</ul>
+		<p><a href="#appy" data-role="button" id="appy" style="font-size:2.5em;">Appy</a></p>
+		<p><a href="#sad" data-role="button" id="sad" style="font-size:2.5em;">Sad</a></p>
+	</div>
+	<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star" class="ui-btn-active">Fun</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+</section><!-- /page -->
+
+<section data-role="page" id="appy" data-theme="a">
+	<header data-role="header"><h1>Share to facebook</h1></header>
+	<div style="text-align: center;">
+		<ul data-role="listview">
+			<li>
+				<div data-role="content">	
+					<form id="form" action="#" method="post">
+						<div data-role="fieldcontain">
+							<fieldset data-role="controlgroup">
+								<label for="howmuch"><h3>Share your appies to Facebook!</h3></label>
+								<input type="text" name="share" id="shareappy"/>
+							</fieldset>
+						</div>
+					</form>
+				</div>
+			</li>
+		</ul>
+		<p><a href="#summary" data-role="button" id="share" style="font-size:2.5em;">Share</a></p>
+	</div>
+	<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star" class="ui-btn-active">Fun</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+</section><!-- /page -->
+
+<section data-role="page" id="sad" data-theme="a">
+	<header data-role="header"><h1>Share to facebook</h1></header>
+	<div style="text-align: center;">
+		<ul data-role="listview">
+			<li>
+				<div data-role="content">	
+					<form id="form" action="#" method="post">
+						<div data-role="fieldcontain">
+							<fieldset data-role="controlgroup">
+								<label for="howmuch"><h3>We're sorry. Share this publicly, and we'll fix it!</h3></label>
+								<input type="text" name="share" id="shareappy"/>
+							</fieldset>
+						</div>
+					</form>
+				</div>
+			</li>
+		</ul>
+		<p><a href="#summary" data-role="button" id="share" style="font-size:2.5em;">Share</a></p>
+	</div>
+	<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star" class="ui-btn-active">Fun</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+</section><!-- /page -->
+
 
 
 <section data-role="page" id="profile" data-theme="a">
@@ -163,6 +255,7 @@
 				<div class="ui-block-b">	
 					<select name="taxbracket" id="taxbracket">
 						<option value="choose bracket">choose</option>
+						<option value="notsure">I don't know</option>
 						<option value=".10">10%</option>
 						<option value=".15">15%</option>
 						<option value=".25">25%</option>
@@ -194,9 +287,30 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
+</section><!-- /page -->
+
+<section data-rel="dialog" id="helpchoose" data-theme="a">
+	<header data-role="header"><h1></h1></header>
+	<div style="text-align: center;">
+		<ul data-role="listview">
+			<li>
+				<h3>Be ready for tax-time, anytime!</h3>
+				<p>With this app, you can automatically calculate your net </p>
+				<p>and tax from photos of checks and bills.</p>
+
+			</li>
+			<li>
+				<h3>Getting started is easy.</h3>
+				<p>We'll ask a few questions about your tax situation</p>
+				<p>and then you can start taking photos.</p>
+			</li>
+		</ul>
+		<p><a href="#profile" data-role="button" id="getstarted" style="font-size:2.5em;">Get Started</a></p>
+	</div>
 </section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="money" data-transition="flip">
@@ -225,6 +339,7 @@
 					<li><a href="#money" data-icon="plus" class="ui-btn-active">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -254,7 +369,8 @@
 					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
 					<li><a href="#money" data-icon="plus" class="ui-btn-active">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
-					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#summary" data-icon="grid">Net & Tax</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -286,6 +402,7 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus" class="ui-btn-active">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -316,6 +433,7 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus" class="ui-btn-active">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -329,9 +447,9 @@
 
 	<div data-role="content">
 		<ul data-role="listview">
-			<li><a href="index.html" >Income <span id="totalincome" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
-			<li><a href="index.html" >Expense <span id="totalexpense" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
-			<li><a href="index.html" >Tax <span id="totaltax" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
+			<li><a href="#incomelist" >Income <span id="totalincome" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
+			<li><a href="#expenselist" >Expense <span id="totalexpense" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
+			<li><a href="#taxbreakdown" >Tax <span id="totaltax" class="ui-li-count" style="font-size:1.5em;">0.00</span></a></li>
 		</ul>
 	</div>
 	<div data-role="content" style="text-align: center;">
@@ -340,7 +458,6 @@
 		<p><a href="#moneyout" data-role="button" id="expensepaidsummary">Enter expenses.</a></p>-->
 
 		<!--<p><h2><a href="#survey2" data-role="button" id="surveystartbutton">NEXT</a></h2></p> -->
-		</div>
 	</div>
 	
 
@@ -351,11 +468,66 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net & Tax</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
 </section><!-- /page -->
 
+<section data-role="page" data-theme="a" id="incomelist" data-transition="flip">
+	<header data-role="header">
+		<h1>List of income transactions coming soon!</h1>
+	</header>
+	<div data-role="content" style="text-align: center;">
+		<h4><strong><label  style="font-size:1.5em;" id="clickincome">Click income below to enter income.</label></strong></h4>
+	</div>
+	<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net & Tax</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
+</section><!-- /page -->
+<section data-role="page" data-theme="a" id="expenselist" data-transition="flip">
+	<header data-role="header">
+		<h1>List of expense transactions coming soon!</h1>
+	</header>
+	<div data-role="content" style="text-align: center;">
+		<h4><strong><label  style="font-size:1.5em;" id="clickexpense">Click expense below to enter expenses.</label></strong></h4>
+	</div>
+	<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net & Tax</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
+</section><!-- /page -->
+<section data-role="page" data-theme="a" id="taxbreakdown" data-transition="flip">
+	<header data-role="header">
+		<h1>Breakdown of tax coming soon!</h1>
+	</header>
+	<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#profile" data-icon="gear">Tax Profile</a></li>
+					<li><a href="#money" data-icon="plus">Income</a></li>
+					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
+					<li><a href="#summary" data-icon="grid" class="ui-btn-active">Net & Tax</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
+				</ul>
+			</div><!-- /navbar -->
+	</div><!-- /footer -->
+</section><!-- /page -->
 
 <section data-role="page" data-theme="a" id="survey1" data-transition="flip" data-add-back-btn="true" data-back-btn-text="Back" data-dom-cache="true">
 	<header data-role="header">
@@ -421,6 +593,7 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -459,6 +632,7 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -481,6 +655,7 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -502,6 +677,7 @@
 					<li><a href="#money" data-icon="plus">Income</a></li>
 					<li><a href="#moneyout" data-icon="minus">Expense</a></li>
 					<li><a href="#summary" data-icon="grid">Net & Tax	</a></li>
+					<li><a href="#fun" data-icon="star">Fun</a></li>
 				</ul>
 			</div><!-- /navbar -->
 	</div><!-- /footer -->
